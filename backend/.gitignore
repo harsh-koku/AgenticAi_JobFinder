@@ -1,0 +1,12 @@
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+.classpath
+.project
+.settings
+.idea
+*.iws
+*.iml
+*.ipr
+.vscode/
+.env
