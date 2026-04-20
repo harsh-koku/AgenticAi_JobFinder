@@ -1,70 +1,102 @@
-# Agentic Career Matchmaker 🚀
+# 🚀 Agentic Career Matchmaker
+[![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?style=flat-square&logo=java)](https://jdk.java.net/17/)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue?style=flat-square&logo=python)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-Welcome to the **Agentic Career Matchmaker**! This is an automated system designed to help you find the best internship opportunities using AI. 
-
-The system doesn't just search the web; it uses an **AI Agent** to scrape real-time data, evaluate job requirements against your criteria, and display everything in a premium, dark-luxury dashboard.
-
----
-
-## 🌟 What does it do?
-1. **Scrapes:** Automatically searches the web (using SerpAPI) for latest internship postings.
-2. **Analyzes:** Uses Google's Gemini AI to extract key details (role, company, compensation, location) and score the relevance.
-3. **Persists:** Saves the findings into a MySQL database.
-4. **Displays:** Renders all data on a beautiful, interactive React dashboard.
+An end-to-end automated internship discovery and analysis platform. This system leverages **Agentic AI** to hunt for opportunities, scrape data, evaluate fit using LLMs, and present them in a high-end dashboard.
 
 ---
 
-## 🛠️ System Architecture
-The project is split into three main parts:
-*   **AI Agent (Python/FastAPI):** The "brain" that searches and analyzes data.
-*   **Backend (Java/Spring Boot):** The "heart" that manages data and schedules the AI tasks.
-*   **Frontend (React/Vite):** The "face" that you interact with.
+## 🌌 System Architecture
+
+The project is built as a microservices-based ecosystem designed for scalability and intelligence.
+
+```mermaid
+graph TD
+    A[Frontend: React/Dark Luxury] <--> B[Backend: Spring Boot]
+    B <--> C[AI Agent: FastAPI/LangGraph]
+    C --> D[Web Search: SerpAPI]
+    C --> E[LLM: Google Gemini]
+    B <--> F[(Database: MySQL)]
+```
+
+### 🧠 The AI Brain (LangGraph)
+The AI agent doesn't just search; it follows a sophisticated multi-step reasoning path:
+
+```mermaid
+graph LR
+    Search[Searcher Node] --> Extract[Extractor Node]
+    Extract --> Evaluate[Evaluator Node]
+    Evaluate --> Save[Persistence]
+```
+
+1.  **Searcher**: Uses SerpAPI to locate relevant internship postings dynamically.
+2.  **Extractor**: Parses raw web content into structured JSON.
+3.  **Evaluator**: Uses Google Gemini to score the job based on requirements and salary.
 
 ---
 
-## 🚀 Getting Started
+## ✨ Features
 
-To run this project on your local machine, you'll need to initialize each component.
-
-### 📋 Prerequisites
-Ensure you have the following installed:
-*   **Python 3.11+**
-*   **Java 17+** (Maven included)
-*   **Node.js & npm**
-*   **MySQL Server**
+- **Autonomous Discovery**: Scheduled scraping of the latest career opportunities.
+- **AI Scoring**: Intelligent evaluation of roles to filter out irrelevant postings.
+- **Dark Luxury UI**: A premium Dashboard built with React and Tailwind CSS, featuring Bento grids and smooth animations.
+- **Robust Persistence**: Securely stores job intelligence in a structured database.
 
 ---
 
-### Phase 1: AI Agent Setup 🤖
-1.  Go into the `ai-agent` folder: `cd ai-agent`
-2.  Create a virtual environment: `python -m venv venv`
-3.  Activate it: `venv\Scripts\activate` (Windows)
-4.  Install dependencies: `pip install -r requirements.txt`
-5.  **Initialize Config:** Copy `.env.example` to `.env` and add your `SERPAPI_API_KEY` and `GOOGLE_API_KEY`.
-6.  Run it: `python app/main.py`
+## 🚀 Installation & Setup
 
-### Phase 2: Backend Setup ☕
-1.  Go into the `backend` folder: `cd backend`
-2.  **Initialize Config:** Copy `.env.example` to `.env` and update your MySQL database credentials.
-3.  Create the database: `mysql -u root -p -e "CREATE DATABASE matchmaker_db;"`
-4.  Run the Spring Boot app: `./mvnw spring-boot:run`
+### ⚙️ Environment Configuration
 
-### Phase 3: Frontend Setup 💻
-1.  Go into the `frontend` folder: `cd frontend`
-2.  Install dependencies: `npm install`
-3.  **Initialize Config:** Copy `.env.example` to `.env`.
-4.  Run it: `npm run dev`
+You must create `.env` files in each of the three directories. Use the keys below:
+
+| Service | Key | Description |
+| :--- | :--- | :--- |
+| **AI Agent** | `GOOGLE_API_KEY` | Gemini API Key |
+| **AI Agent** | `SERPAPI_API_KEY` | Real-time Search Key |
+| **Backend** | `DB_URL` | MySQL Connection String |
+| **Backend** | `AGENT_SERVICE_URL` | AI Microservice Endpoint |
 
 ---
 
-## 🔑 Crucial Notes on Initialization
-> [!IMPORTANT]
-> **Don't Forget Secrets:** The project will NOT work without valid API keys for SerpAPI (web search) and Google Gemini (AI analysis). Make sure your `.env` files are correctly set up in each directory.
+### Step 1: AI Microservice (Python)
+```bash
+cd ai-agent
+python -v mvenv venv
+source venv/bin/activate  # venv\Scripts\activate on Windows
+pip install -r requirements.txt
+python app/main.py
+```
 
-> [!TIP]
-> **Order Matters:** Start the AI Agent first (port 8000), then the Backend (port 8080), and finally the Frontend.
+### Step 2: Core Backend (Java)
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+### Step 3: Premium Frontend (React)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🛠️ Tech Stack
+
+- **AI Layer**: LangGraph, LangChain, Google Gemini Pro.
+- **Backend**: Java 17, Spring Boot, Spring Data JPA, MySQL.
+- **Frontend**: React 18, Vite, Tailwind CSS, Framer Motion.
+- **Data**: SerpAPI (Google Search Engine Results).
 
 ---
 
 ## 📜 License
-This project is for educational and portfolio purposes. Feel free to use it and build upon it!
+Integrated as part of the **Agentic Matchmaker Portfolio**. Released under the [MIT License](LICENSE).
+
+> [!NOTE]
+> This project was built by **Antigravity AI** as an advanced demonstration of autonomous web agents.
